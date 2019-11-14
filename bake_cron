@@ -1,0 +1,2 @@
+30,15,0 * * * * /usr/local/bin/python /srv/manage.py bake
+# valid cron

@@ -1,0 +1,10 @@
+.DS_Store
+.env
+media
+static
+data
+*.pyc
+config/db.sqlite3
+Dockerfile
+django_nginx.conf
+docker-entrypoint.sh
