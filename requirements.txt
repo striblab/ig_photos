@@ -16,6 +16,7 @@ django-tastypie==0.14.2
 docutils==0.14
 durationpy==0.5
 future==0.16.0
+gunicorn
 hjson==3.0.1
 idna==2.8
 jmespath==0.9.3

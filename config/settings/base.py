@@ -16,18 +16,18 @@ ROOT_DIR = os.path.dirname(
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'none')
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # ENTER DATABASE NAME HERE
-        'NAME': 'ig',
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD', ''),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
-        # My stock setup uses Postgres as its backend
-        'PORT': os.getenv('DB_PORT', '5432'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         # ENTER DATABASE NAME HERE
+#         'NAME': 'ig',
+#         'USER': os.getenv('DB_USER', 'postgres'),
+#         'PASSWORD': os.getenv('DB_PASSWORD', ''),
+#         'HOST': os.getenv('DB_HOST', 'localhost'),
+#         # My stock setup uses Postgres as its backend
+#         'PORT': os.getenv('DB_PORT', '5432'),
+#     }
+# }
 
 INSTALLED_APPS = [
     'django.contrib.admin',

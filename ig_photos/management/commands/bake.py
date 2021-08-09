@@ -14,7 +14,6 @@ class Command(BaseCommand):
     """
     def handle(self, *args, **kwargs):
         bucketName = "static.startribune.com"
-        # bucketName = "strib-ig-photos"
 
         outputName = "assets/features/thomas/ig_photos.json"
 
@@ -27,15 +26,6 @@ class Command(BaseCommand):
         old_filename = "old_ig_photos.json"
         # url = "http://localhost:8000/api/ig_photos/photo/?format=json"
         url = "http://ec2-13-57-84-236.us-west-1.compute.amazonaws.com/ig-photos/api/ig_photos/photo/?format=json"
-
-        # s3 = boto3.resource('s3')
-        # try:
-        #     s3.Bucket(bucketName).download_file(Key1)
-        # except botocore.exceptions.ClientError as e:
-        #     if e.response['Error']['Code'] == "404":
-        #         print("The object does not exist.")
-        #     else:
-        #         raise
 
         s3 = boto3.client('s3')
         s3.download_file(bucketName, Key1, local_path)
