@@ -1,0 +1,43 @@
+FROM python:3.7
+
+# Set the file maintainer (your name - the file's author)
+MAINTAINER Thomas Oide
+
+# Set env variables used in this Dockerfile (add a unique prefix, such as DOCKYARD)
+# Local directory with project source
+ENV DOCKYARD_SRC=.
+
+# Directory in container for all project files
+ENV DOCKYARD_SRVHOME=/srv
+
+# Directory in container for project source files
+ENV DOCKYARD_SRVPROJ=$DOCKYARD_SRVHOME/$DOCKYARD_SRC
+
+# Update the default application repository sources list
+RUN apt-get update && apt-get -y upgrade
+
+# Create application subdirectories
+WORKDIR $DOCKYARD_SRVHOME
+RUN mkdir media static logs
+
+# Copy application source code to SRCDIR
+COPY $DOCKYARD_SRC $DOCKYARD_SRVPROJ
+
+# Install Python dependencies
+RUN pip install -r $DOCKYARD_SRVPROJ/requirements.txt
+
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
+ARG AWS_STORAGE_BUCKET_NAME
+
+ENV AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+ENV AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+ENV AWS_STORAGE_BUCKET_NAME=$AWS_STORAGE_BUCKET_NAME
+
+# Copy entrypoint script into the image
+WORKDIR $DOCKYARD_SRVPROJ
+COPY ./docker-entrypoint-bake.sh /
+RUN chmod +x /docker-entrypoint-bake.sh
+# RUN python manage.py migrate        # Apply database migrations
+RUN echo "I am built."
+ENTRYPOINT ["/docker-entrypoint-bake.sh"]

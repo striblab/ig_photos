@@ -6,18 +6,16 @@ import environ
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-env = environ.Env()
-environ.Env.read_env('../../.env')
-
-TEST=env.ENVIRON
+# env = environ.Env()
+# environ.Env.read_env('../../.env')
+#
+# TEST=env.ENVIRON
 
 env = environ.Env(
     AWS_ACCESS_KEY_ID=(str, False),
     AWS_SECRET_ACCESS_KEY=(str, False),
     AWS_STORAGE_BUCKET_NAME=(str, False))
-environ.Env.read_env('/var/www/ig_photos/.env')
-
-DEBUG = True
+# environ.Env.read_env('/var/www/ig_photos/.env')
 
 ALLOWED_HOSTS = [
     '*'
